@@ -1,0 +1,12 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+build:
+  artifacts:
+    - image: registry.uffizzi.com/quickstart
+      context: ./src
+      sync:
+        infer:
+        - '*.js'
+manifests:
+  rawYaml:
+    - k8s/web.yaml
