@@ -1,4 +1,4 @@
-name: Multicluster e2e
+name: k8s version testing e2e
 
 on:
   pull_request:
@@ -44,7 +44,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   uffizzi-cluster:
-    name: Deploy Helm chart to Uffizzi Virtual Cluster
+    name: Kustomize apply to k8s clusters of multiple versions
     needs:
       - build-image
     if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' }}
@@ -60,7 +60,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: "github-actions[bot]"
-          body-includes: pr-${{ github.event.pull_request.number }}-e2e-helm
+          body-includes: pr-${{ github.event.pull_request.number }}-1276
           direction: last
 
       # Create/Update comment with action deployment status
@@ -71,20 +71,20 @@ jobs:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## Uffizzi Ephemeral Environment - Virtual Cluster - E2E Helm Chart
+            ## Uffizzi Ephemeral Environment - Virtual Cluster
 
             :cloud: deploying ...
 
             :gear: Updating now by workflow run [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
 
-            Cluster name will be `pr-${{ github.event.pull_request.number }}-e2e-helm`
+            Cluster names will be `pr-${{ github.event.pull_request.number }}-1276` and `pr-${{ github.event.pull_request.number }}-1282`.
 
             Download the Uffizzi CLI to interact with the upcoming virtual cluster
             https://docs.uffizzi.com/install
           edit-mode: replace
 
       - name: Create and connect to vcluster
-        uses: UffizziCloud/cluster-action@k8s_version
+        uses: UffizziCloud/cluster-action@main
         with:
           cluster-name: pr-${{ github.event.pull_request.number }}-1276
           server: https://app.uffizzi.com
@@ -92,7 +92,7 @@ jobs:
           kubeconfig: kubeconfig-1276
 
       - name: Create and connect to vcluster
-        uses: UffizziCloud/cluster-action@k8s_version
+        uses: UffizziCloud/cluster-action@main
         with:
           cluster-name: pr-${{ github.event.pull_request.number }}-1282
           server: https://app.uffizzi.com
@@ -141,7 +141,7 @@ jobs:
           comment-id: ${{ steps.notification.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## Uffizzi Ephemeral Environment - Virtual Cluster - E2E Helm Chart
+            ## Uffizzi Ephemeral Environment - Virtual Cluster
 
             E2E tests in progress on the `pr-${{ github.event.pull_request.number }}-1276` and
             `pr-${{ github.event.pull_request.number }}-1282` virtual clusters.
