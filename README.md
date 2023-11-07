@@ -61,7 +61,7 @@ You can `curl` this address, or copy and paste it into your browser to see the a
 
 **7. Cleanup**
 ``` bash
-uffizzi cluster delete quickstart
+uffizzi cluster delete <cluster-name>
 ```
 
 ## A note about Uffizzi Ingress and networking  
