@@ -1,4 +1,4 @@
-# Uffizzi Quickstart of testing multiple k8s versions (~2 min)
+# Uffizzi Quickstart of testing multiple k8s versions (~2 min) test
 
 This repo demonstrates how you can create Kubernetes virtual clusters of different versions on Uffizzi Cloud and use them for testing
 your application running in different Kubernetes versions. 
