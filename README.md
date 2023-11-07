@@ -2,7 +2,11 @@
 
 This repo demonstrates how you can create Kubernetes virtual clusters of different versions on Uffizzi Cloud and use them for testing
 your application running in different Kubernetes versions. 
+
 You can choose between creating a standard [virual cluster](#create-a-virtual-cluster) or a [dev cluster](#development-dev-cluster). Dev clusters are standard virtual clusters with additional developer tooling for building, testing, and auto-deploying your local project files. [Learn more >](https://docs.uffizzi.com/docs/quickstart)
+
+For a more in-depth understanding of why you should consider k8s version testing for your applications, checkout
+our blog here.
 
 ## Prerequisites
 
